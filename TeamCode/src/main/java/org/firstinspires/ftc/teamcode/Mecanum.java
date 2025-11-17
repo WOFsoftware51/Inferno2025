@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -56,6 +58,7 @@ public class Mecanum extends LinearOpMode {
     double yp;
     double xp;
 
+    TelemetryManager panelsTelemetry;
 
 
     @Override
@@ -74,6 +77,7 @@ public class Mecanum extends LinearOpMode {
         motorTransfer = (DcMotorEx)hardwareMap.get(DcMotor.class, "motorTransfer");
         motorIntake = hardwareMap.get(DcMotor.class, "motorIntake");
 
+        panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
 //        limelight = hardwareMap.get(Limelight3A.class, "limelight");
 //        limelight.setPollRateHz(100); // This sets how often we ask Limelight for data (100 times per second)
@@ -125,7 +129,7 @@ public class Mecanum extends LinearOpMode {
         runtime.reset();
         if (isStopRequested()) return;
 
-//        final_Orientation();
+        imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.FORWARD)));
         imu.resetYaw();
 
         // run until the end of the match (driver presses STOP)
@@ -197,11 +201,11 @@ public class Mecanum extends LinearOpMode {
                 isFieldCentric = 1;
 
             }
-            if(gamepad1.back && isFieldCentric == 1){
+            if(gamepad1.start && isFieldCentric == 1){
                 isFieldCentric = 0;
 
             }
-            if(gamepad1.dpad_up)
+            if(gamepad1.back)
             {
                 imu.resetYaw();
             }
@@ -294,8 +298,11 @@ public class Mecanum extends LinearOpMode {
             telemetry.addData("Pose X", poseX);
             telemetry.addData("Pose Y", poseY);
 
+            panelsTelemetry.addData("Yaw", yaw);
+            panelsTelemetry.addData("Field Centric", isFieldCentric);
 
             telemetry.update();
+            panelsTelemetry.update();
             sleep(20);
         }
 
