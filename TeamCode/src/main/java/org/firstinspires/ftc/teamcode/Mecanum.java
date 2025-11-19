@@ -25,7 +25,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 @TeleOp(name="Mecanum")
 public class Mecanum extends LinearOpMode {
 
-    boolean inferno = false;
+    boolean inferno = true;      ///        <---------------------------------------------------
     ElapsedTime runtime = new ElapsedTime();
 
     // Declare OpMode members for each of the 4 motors.

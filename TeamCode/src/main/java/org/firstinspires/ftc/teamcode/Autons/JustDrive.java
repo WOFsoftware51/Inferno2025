@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.IMU;
 
 
-@Autonomous(name = "JustShoot")
+@Autonomous(name = "JustDrive")
 public class JustDrive extends LinearOpMode {
-    boolean inferno = false;
+    boolean inferno = false;   ///        <---------------------------------------------------
     DcMotor motorFrontLeft;
     DcMotor motorBackLeft;
     DcMotor motorFrontRight;
@@ -24,6 +24,7 @@ public class JustDrive extends LinearOpMode {
     double xp;
 
     double timer;
+    double driveEncoder;
 
     @Override
     public void runOpMode() {
@@ -48,19 +49,25 @@ public class JustDrive extends LinearOpMode {
         }
 
         timer = 0;
+        driveEncoder = 0;
 
         waitForStart();
 
         if (opModeIsActive()) {
             while (opModeIsActive()) {
+
+                driveEncoder = motorBackLeft.getCurrentPosition();
                 telemetry.addData("Status", "Initialized");
+                telemetry.addData("Timer", timer);
+                telemetry.addData("Drive Encoder", driveEncoder);
                 telemetry.update();
 
 
-                while(timer<100) {
+                if(driveEncoder<1000) {
+                    timer++;
                     drive(0, -0.5, 0);
                 }
-                while (timer > 100) {
+                else {
                     drive(0, 0, 0);
                 }
 
