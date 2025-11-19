@@ -72,8 +72,16 @@ public class JustShoot extends LinearOpMode {
                         }
                         break;
                     case SHOOT:
-                        motorShooterLeft.setPower(1.0);
-                        motorShooterRight.setPower(-1.0);
+                        if(shooterRightVelocity >= shooterLimit){ //-.2600 works
+                            motorShooterRight.setPower(-1.0);
+                            motorShooterLeft.setPower(1.0);
+                            telemetry.addData("Shooting Speed:", "Speeding Up");
+                        }
+                        else {
+                            motorShooterRight.setPower(-0.75);
+                            motorShooterLeft.setPower(0.75);
+                            telemetry.addData("Shooting Speed:", "Slowing Down");
+                        }
                         motorTransfer.setPower(-0.6);
                         timer++;
                         if (timer > 500) {

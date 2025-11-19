@@ -25,7 +25,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 @TeleOp(name="Mecanum")
 public class Mecanum extends LinearOpMode {
 
-    boolean inferno = true;
+    boolean inferno = false;
     ElapsedTime runtime = new ElapsedTime();
 
     // Declare OpMode members for each of the 4 motors.
@@ -56,6 +56,7 @@ public class Mecanum extends LinearOpMode {
     double yp;
     double xp;
 
+    double shooterSpeed;
 
 
     @Override
@@ -120,6 +121,12 @@ public class Mecanum extends LinearOpMode {
         boolean slow = false;
         int isFieldCentric = 0;
 
+        if(inferno){
+            shooterSpeed = -2450;
+        }
+        else {
+            shooterSpeed = -2500;
+        }
 
         waitForStart();
         runtime.reset();
@@ -142,7 +149,7 @@ public class Mecanum extends LinearOpMode {
             if(gamepad2.right_bumper){
                 //motorShooterRight.setPower(1.0);
                 //motorShooterLeft.setPower(1.0);
-                if(shooterRightVelocity >= -2450){ //-.2600 works
+                if(shooterRightVelocity >= shooterSpeed){ //-.2600 works
                     motorShooterRight.setPower(-1.0);
                     motorShooterLeft.setPower(1.0);
                     telemetry.addData("Shooting Speed:", "Speeding Up");
