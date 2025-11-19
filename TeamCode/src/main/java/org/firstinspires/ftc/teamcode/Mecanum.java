@@ -129,7 +129,7 @@ public class Mecanum extends LinearOpMode {
         runtime.reset();
         if (isStopRequested()) return;
 
-        imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.FORWARD)));
+        imu.initialize(new IMU.Parameters(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP)));
         imu.resetYaw();
 
         // run until the end of the match (driver presses STOP)
@@ -201,11 +201,11 @@ public class Mecanum extends LinearOpMode {
                 isFieldCentric = 1;
 
             }
-            if(gamepad1.start && isFieldCentric == 1){
+            if(gamepad1.back && isFieldCentric == 1){
                 isFieldCentric = 0;
 
             }
-            if(gamepad1.back)
+            if(gamepad1.dpadUpWasPressed())
             {
                 imu.resetYaw();
             }
