@@ -1,22 +1,17 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import org.firstinspires.ftc.teamcode.Constants;
 //import com.qualcomm.hardware.limelightvision.LLResult;
-import com.qualcomm.hardware.limelightvision.LLResultTypes;
-import com.qualcomm.hardware.limelightvision.LLStatus;
-import com.qualcomm.hardware.limelightvision.Limelight3A;
 
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 
 //import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -24,8 +19,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 
 @TeleOp(name="Mecanum")
 public class Mecanum extends LinearOpMode {
-
-    boolean inferno = true;      ///        <---------------------------------------------------
     ElapsedTime runtime = new ElapsedTime();
 
     // Declare OpMode members for each of the 4 motors.
@@ -88,7 +81,7 @@ public class Mecanum extends LinearOpMode {
 //            ta = result.getTa(); // How big the target looks (0%-100% of the image)
 //        }
 
-        if(inferno) {
+        if(Constants.inferno) {
             motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
             motorBackLeft.setDirection(DcMotor.Direction.FORWARD);
             motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -121,7 +114,7 @@ public class Mecanum extends LinearOpMode {
         boolean slow = false;
         int isFieldCentric = 0;
 
-        if(inferno){
+        if(Constants.inferno){
             shooterSpeed = -2450;
         }
         else {

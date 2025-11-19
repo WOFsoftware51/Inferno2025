@@ -6,10 +6,11 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import org.firstinspires.ftc.teamcode.Constants;
+
 
 @Autonomous(name = "ShootAndLeaveBlue")
 public class ShootAndLeaveBlue extends LinearOpMode {
-    boolean inferno = false;   ///        <---------------------------------------------------
     DcMotor motorFrontLeft;
     DcMotor motorBackLeft;
     DcMotor motorFrontRight;
@@ -51,7 +52,7 @@ public class ShootAndLeaveBlue extends LinearOpMode {
 
         imu = hardwareMap.get(IMU.class, "imu");
 
-        if(inferno) {
+        if(Constants.inferno) {
             motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
             motorBackLeft.setDirection(DcMotor.Direction.FORWARD);
             motorFrontRight.setDirection(DcMotor.Direction.FORWARD);

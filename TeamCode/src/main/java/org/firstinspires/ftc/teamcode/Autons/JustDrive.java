@@ -6,10 +6,11 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import org.firstinspires.ftc.teamcode.Constants;
+
 
 @Autonomous(name = "JustDrive")
 public class JustDrive extends LinearOpMode {
-    boolean inferno = false;   ///        <---------------------------------------------------
     DcMotor motorFrontLeft;
     DcMotor motorBackLeft;
     DcMotor motorFrontRight;
@@ -34,7 +35,7 @@ public class JustDrive extends LinearOpMode {
         motorBackRight = hardwareMap.get(DcMotor.class, "backRight");
         imu = hardwareMap.get(IMU.class, "imu");
 
-        if(inferno) {
+        if(Constants.inferno){
             motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
             motorBackLeft.setDirection(DcMotor.Direction.FORWARD);
             motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
