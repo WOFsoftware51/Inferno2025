@@ -140,7 +140,7 @@ public class Mecanum extends LinearOpMode {
             double transferAngle = ((double)motorTransfer.getCurrentPosition()/28)*100/360;
 
             if(gamepad2.right_bumper){
-                //motorShooterRight.setPower(1.0);
+                //motorShooterRight.setPower(-1.0);
                 //motorShooterLeft.setPower(1.0);
                 if(shooterRightVelocity >= shooterSpeed){ //-.2600 works
                     motorShooterRight.setPower(-1.0);
@@ -153,6 +153,10 @@ public class Mecanum extends LinearOpMode {
                 }
 //                motorShooterRight.setTargetPosition(3500);
 //                motorShooterLeft.setTargetPosition(3500);
+            }
+            else if(gamepad2.left_bumper){
+                motorShooterRight.setPower(-1.0);
+                motorShooterLeft.setPower(1.0);
             }
             else{
                 motorShooterRight.setPower(0.0);
