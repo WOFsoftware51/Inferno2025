@@ -155,8 +155,17 @@ public class Mecanum extends LinearOpMode {
 //                motorShooterLeft.setTargetPosition(3500);
             }
             else if(gamepad2.left_bumper){
-                motorShooterRight.setPower(-1.0);
-                motorShooterLeft.setPower(1.0);
+                if(shooterRightVelocity >= -2750){ //-.2600 works
+                    motorShooterRight.setPower(-1.0);
+                    motorShooterLeft.setPower(1.0);
+                    telemetry.addData("Shooting Speed:", "Speeding Up");
+                } else {
+                    motorShooterRight.setPower(-0.75);
+                    motorShooterLeft.setPower(0.75);
+                    telemetry.addData("Shooting Speed:", "Slowing Down");
+                }
+//                motorShooterRight.setTargetPosition(3500);
+//                motorShooterLeft.setTargetPosition(3500);
             }
             else{
                 motorShooterRight.setPower(0.0);

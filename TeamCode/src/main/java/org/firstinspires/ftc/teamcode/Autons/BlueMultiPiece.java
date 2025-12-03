@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.Constants;
 
 
-@Autonomous(name = "Red 9 Piece")
-public class RedMultiPiece extends LinearOpMode {
+@Autonomous(name = "Blue 9 Piece")
+public class BlueMultiPiece extends LinearOpMode {
     DcMotor motorFrontLeft;
     DcMotor motorBackLeft;
     DcMotor motorFrontRight;
@@ -300,9 +300,9 @@ public class RedMultiPiece extends LinearOpMode {
                         motorShooterLeft.setPower(0.0);
                         motorShooterRight.setPower(0.0);
                         motorTransfer.setPower(0.0);
-                        driveTurnCW(0.5, -47);
+                        driveTurnCCW(0.5, 47);
                         timer++;
-                        if (timer > 200 || (yaw < -46 && yaw > -150)) {
+                        if (timer > 200 || (yaw > 46 && yaw < 150)) {
                             timer = 0;
                             drive(0.0, 0.0, 0);
                             currentState = State.DRIVEFORWARDINTAKE;
@@ -312,9 +312,9 @@ public class RedMultiPiece extends LinearOpMode {
                         motorShooterLeft.setPower(0.0);
                         motorShooterRight.setPower(0.0);
                         motorTransfer.setPower(0.0);
-                        driveTurnCCW(0.5, 0);
+                        driveTurnCW(0.5, 0);
                         timer++;
-                        if (timer > 1000 || yaw > -1) {
+                        if (timer > 1000 || (yaw < 1 && yaw > -150)) {
                             timer = 0;
                             drive(0.0, 0.0, 0);
                             currentState = State.DRIVEFORWARD;
@@ -324,9 +324,9 @@ public class RedMultiPiece extends LinearOpMode {
                         motorShooterLeft.setPower(0.0);
                         motorShooterRight.setPower(0.0);
                         motorTransfer.setPower(0.0);
-                        driveTurnCCW(0.5, 10);
+                        driveTurnCW(0.5, -10);
                         timer++;
-                        if (timer > 200 || yaw > 9) {
+                        if (timer > 200 || (yaw < -9 && yaw > -150)) {
                             timer = 0;
                             drive(0.0, 0.0, 0);
                             currentState = State.RESET3;
@@ -336,9 +336,9 @@ public class RedMultiPiece extends LinearOpMode {
                         motorShooterLeft.setPower(0.0);
                         motorShooterRight.setPower(0.0);
                         motorTransfer.setPower(0.0);
-                        driveTurnCW(0.5, -47);
+                        driveTurnCCW(0.5, 47);
                         timer++;
-                        if (timer > 200 || (yaw < -46 && yaw > -150)) {
+                        if (timer > 200 || (yaw > 46 && yaw < 150)) {
                             timer = 0;
                             drive(0.0, 0.0, 0);
                             currentState = State.RESET4;
@@ -348,9 +348,9 @@ public class RedMultiPiece extends LinearOpMode {
                         motorShooterLeft.setPower(0.0);
                         motorShooterRight.setPower(0.0);
                         motorTransfer.setPower(0.0);
-                        driveTurnCCW(0.5, 6);
+                        driveTurnCW(0.5, -6);
                         timer++;
-                        if (timer > 1000 || yaw > 5) {
+                        if (timer > 1000 || (yaw < -5 && yaw > -150)) {
                             timer = 0;
                             drive(0.0, 0.0, 0);
                             currentState = State.DRIVEFORWARD2;
@@ -447,10 +447,10 @@ public class RedMultiPiece extends LinearOpMode {
             yp = yp - 0.03;
         }
         if (Math.abs(target_yaw - yaw) < 0.1){
-            RedMultiPiece.m_rx = 0;
+            BlueMultiPiece.m_rx = 0;
         }
         else  {
-            RedMultiPiece.m_rx =  (target_yaw - yaw)/9;
+            BlueMultiPiece.m_rx =  (target_yaw - yaw)/9;
         }
 
 
